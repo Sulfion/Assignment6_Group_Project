@@ -5,35 +5,80 @@ using UnityEngine.AI;
 
 public class FishGoalPositionController : MonoBehaviour
 {
-    GameObject[] goalLocations;
+    GameObject[] goalLocationsOne;
+    GameObject[] goalLocationsTwo;
+    GameObject[] goalLocationsThree;
+    GameObject[] goalLocationsFour;
+    GameObject[] goalLocationsFive;
     NavMeshAgent agent;
     private bool dontStop = true;
+    private int goalCompleteTracker = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetRandomGoalForAgents();
+        SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
     }
 
     private void Update()
     {
-        SetNewRandomGoalForAgents();
+        SetFishNewGoal();
     }
 
-    private void SetRandomGoalForAgents()
+    //initialize arrays for different stages of progression down the river
+    private void SetStartGoalForAgentsAndArrays()
     {
-        goalLocations = GameObject.FindGameObjectsWithTag("Goal");
+        goalLocationsOne = GameObject.FindGameObjectsWithTag("Goal");
+        goalLocationsTwo = GameObject.FindGameObjectsWithTag("GoalTwo");
+        goalLocationsThree = GameObject.FindGameObjectsWithTag("GoalThree");
+        goalLocationsFour = GameObject.FindGameObjectsWithTag("GoalFour");
+        goalLocationsFive = GameObject.FindGameObjectsWithTag("GoalFive");
         agent = this.GetComponent<NavMeshAgent>();
-        agent.SetDestination(goalLocations[Random.Range(0, goalLocations.Length)].transform.position);
+        agent.SetDestination(goalLocationsOne[Random.Range(0, goalLocationsOne.Length)].transform.position);
     }
 
-    //once the NPC reaches their goal, set a random new goal
-    private void SetNewRandomGoalForAgents()
+    //track when fish reaches a goal by distance with variable to know which goal has been reached
+    //when goal has been reached, choose a random new goal from the next arrays positions
+    //destroy gameobject when final goal reached
+    private void SetFishNewGoal()
     {
-        if (agent.remainingDistance < 1)
+        switch (goalCompleteTracker)
         {
-            agent.SetDestination(goalLocations[Random.Range(0, goalLocations.Length)].transform.position);
+            case 0:
+                if (agent.remainingDistance < 1)
+                {
+                    agent.SetDestination(goalLocationsTwo[Random.Range(0, goalLocationsTwo.Length)].transform.position);
+                    goalCompleteTracker++;
+                }
+                break;
+            case 1:
+                if (agent.remainingDistance < 1)
+                {
+                    agent.SetDestination(goalLocationsThree[Random.Range(0, goalLocationsThree.Length)].transform.position);
+                    goalCompleteTracker++;
+                }
+                break;
+            case 2:
+                if (agent.remainingDistance < 1)
+                {
+                    agent.SetDestination(goalLocationsFour[Random.Range(0, goalLocationsFour.Length)].transform.position);
+                    goalCompleteTracker++;
+                }
+                break;
+            case 3:
+                if (agent.remainingDistance < 1)
+                {
+                    agent.SetDestination(goalLocationsFive[Random.Range(0, goalLocationsFive.Length)].transform.position);
+                    goalCompleteTracker++;
+                }
+                break;
+            case 4:
+                if (agent.remainingDistance < 1)
+                {
+                    Destroy(gameObject);
+                }
+                break;
         }
     }
 
@@ -42,7 +87,7 @@ public class FishGoalPositionController : MonoBehaviour
     {
         while (dontStop == true)
         {
-            GetComponent<NavMeshAgent>().speed = Random.Range(1.0f, 5.0f); //set a random speed for each agent
+            GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 20.0f); //set a random speed for each agent
             yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
         }
     }

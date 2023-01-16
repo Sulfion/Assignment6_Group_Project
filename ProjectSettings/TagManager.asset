@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Goal
+  - GoalTwo
+  - GoalThree
+  - GoalFour
+  - GoalFive
+  - Fish
   layers:
   - Default
   - TransparentFX
