@@ -10,6 +10,7 @@ TagManager:
   - GoalFour
   - GoalFive
   - Fish
+  - FlockManager
   layers:
   - Default
   - TransparentFX

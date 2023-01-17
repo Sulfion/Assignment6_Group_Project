@@ -1225,6 +1225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7f64b63656bf8469cd2c38a74de6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flockManager: {fileID: 0}
+  atEnd: 0
 --- !u!195 &2646812980149733305
 NavMeshAgent:
   m_ObjectHideFlags: 0

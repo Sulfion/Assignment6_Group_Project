@@ -6,6 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FishGoalPositionController : MonoBehaviour
 {
+    private FlockManager flockManager;
+
     GameObject[] goalLocationsOne;
     GameObject[] goalLocationsTwo;
     GameObject[] goalLocationsThree;
@@ -13,11 +15,13 @@ public class FishGoalPositionController : MonoBehaviour
     GameObject[] goalLocationsFive;
     NavMeshAgent agent;
     private bool dontStop = true;
+    public bool atEnd = false;
     private int goalCompleteTracker = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        flockManager = GetComponent<FlockManager>();
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
     }
@@ -36,7 +40,6 @@ public class FishGoalPositionController : MonoBehaviour
         goalLocationsFour = GameObject.FindGameObjectsWithTag("GoalFour");
         goalLocationsFive = GameObject.FindGameObjectsWithTag("GoalFive");
         agent = this.GetComponent<NavMeshAgent>();
-        agent.SetDestination(goalLocationsOne[Random.Range(0, goalLocationsOne.Length)].transform.position);
     }
 
     //track when fish reaches a goal by distance with variable to know which goal has been reached
@@ -49,37 +52,55 @@ public class FishGoalPositionController : MonoBehaviour
             case 0:
                 if (agent.remainingDistance < 1)
                 {
-                    agent.SetDestination(goalLocationsTwo[Random.Range(0, goalLocationsTwo.Length)].transform.position);
+                    CheckIfAtEnd();
+                    atEnd = false;
+                    agent.SetDestination(goalLocationsOne[Random.Range(0, goalLocationsOne.Length)].transform.position);
                     goalCompleteTracker++;
                 }
                 break;
             case 1:
                 if (agent.remainingDistance < 1)
                 {
-                    agent.SetDestination(goalLocationsThree[Random.Range(0, goalLocationsThree.Length)].transform.position);
+                    agent.SetDestination(goalLocationsTwo[Random.Range(0, goalLocationsTwo.Length)].transform.position);
                     goalCompleteTracker++;
                 }
                 break;
             case 2:
                 if (agent.remainingDistance < 1)
                 {
-                    agent.SetDestination(goalLocationsFour[Random.Range(0, goalLocationsFour.Length)].transform.position);
+                    agent.SetDestination(goalLocationsThree[Random.Range(0, goalLocationsThree.Length)].transform.position);
                     goalCompleteTracker++;
                 }
                 break;
             case 3:
                 if (agent.remainingDistance < 1)
                 {
-                    agent.SetDestination(goalLocationsFive[Random.Range(0, goalLocationsFive.Length)].transform.position);
+                    agent.SetDestination(goalLocationsFour[Random.Range(0, goalLocationsFour.Length)].transform.position);
                     goalCompleteTracker++;
                 }
                 break;
             case 4:
                 if (agent.remainingDistance < 1)
                 {
-                    Destroy(gameObject);
+                    agent.SetDestination(goalLocationsFive[Random.Range(0, goalLocationsFive.Length)].transform.position);
+                    goalCompleteTracker++;
                 }
                 break;
+            case 5:
+                if (agent.remainingDistance < 1)
+                {
+                    atEnd = true;
+                    goalCompleteTracker = 0;
+                }
+                break;
+        }
+    }
+
+    public void CheckIfAtEnd()
+    {
+        if (atEnd == true)
+        {
+            gameObject.transform.position = flockManager.respawnPos.transform.position;
         }
     }
 

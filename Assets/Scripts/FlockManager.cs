@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class FlockManager : MonoBehaviour
 {
     public GameObject npcPrefab;
-    public int numNPC = 20;
+    public GameObject respawnPos;
+
+    private int numNPC = 2;
     public GameObject[] allNPC;
     public Vector3 spawnLimit = new Vector3(30, 0, 30);
 
@@ -26,6 +29,7 @@ public class FlockManager : MonoBehaviour
     {
         ApplyRules();
     }
+
 
     //spawn specified number of NPCs and store their positions in an array.
     //Also where they spawn so they don't appear off the map
