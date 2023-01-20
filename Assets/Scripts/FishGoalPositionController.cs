@@ -7,6 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class FishGoalPositionController : MonoBehaviour
 {
     public FlockManager flockManager;
+    public GameObject thisGameObject;
 
     GameObject[] goalLocationsOne;
     GameObject[] goalLocationsTwo;
@@ -14,16 +15,14 @@ public class FishGoalPositionController : MonoBehaviour
     GameObject[] goalLocationsFour;
     GameObject[] goalLocationsFive;
     NavMeshAgent agent;
+
     private bool dontStop = true;
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
 
-    public GameObject thisGameObject;
-
     // Start is called before the first frame update
     void Start()
     {       
-
         flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>(); 
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
@@ -45,6 +44,8 @@ public class FishGoalPositionController : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
     }
 
+    //check if at end of river
+    //if true, reset to initial values, and change position back to start of river
     public void CheckIfAtEnd()
     {
         if (atEnd == true)
@@ -115,7 +116,7 @@ public class FishGoalPositionController : MonoBehaviour
     {
         while (dontStop == true)
         {
-            GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 20.0f); //set a random speed for each agent
+            GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 10.0f); //set a random speed for each agent
             yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
         }
     }

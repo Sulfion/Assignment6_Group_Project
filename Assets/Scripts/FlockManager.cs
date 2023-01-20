@@ -10,7 +10,7 @@ public class FlockManager : MonoBehaviour
 
     public Transform respawnTransform;
 
-    private int numNPC = 10;
+    public int numNPC = 10;
     public GameObject[] allNPC;
     public Vector3 spawnLimit = new Vector3(30, 0, 30);
 
