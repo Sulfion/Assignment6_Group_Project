@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FishGoalPositionController : MonoBehaviour
 {
-    private FlockManager flockManager;
+    public FlockManager flockManager;
 
     GameObject[] goalLocationsOne;
     GameObject[] goalLocationsTwo;
@@ -18,10 +18,13 @@ public class FishGoalPositionController : MonoBehaviour
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
 
+    public GameObject thisGameObject;
+
     // Start is called before the first frame update
     void Start()
-    {
-        flockManager = GetComponent<FlockManager>();
+    {       
+
+        flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>(); 
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
     }
@@ -42,6 +45,18 @@ public class FishGoalPositionController : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
     }
 
+    public void CheckIfAtEnd()
+    {
+        if (atEnd == true)
+        {
+            goalCompleteTracker = 0;
+            atEnd = false;
+            agent.enabled = false;
+            thisGameObject.transform.position = flockManager.respawnTransform.position;
+            agent.enabled = true;
+        }
+    }
+
     //track when fish reaches a goal by distance with variable to know which goal has been reached
     //when goal has been reached, choose a random new goal from the next arrays positions
     //destroy gameobject when final goal reached
@@ -52,8 +67,6 @@ public class FishGoalPositionController : MonoBehaviour
             case 0:
                 if (agent.remainingDistance < 1)
                 {
-                    CheckIfAtEnd();
-                    atEnd = false;
                     agent.SetDestination(goalLocationsOne[Random.Range(0, goalLocationsOne.Length)].transform.position);
                     goalCompleteTracker++;
                 }
@@ -90,19 +103,12 @@ public class FishGoalPositionController : MonoBehaviour
                 if (agent.remainingDistance < 1)
                 {
                     atEnd = true;
-                    goalCompleteTracker = 0;
+                    CheckIfAtEnd();
                 }
                 break;
         }
     }
 
-    public void CheckIfAtEnd()
-    {
-        if (atEnd == true)
-        {
-            gameObject.transform.position = flockManager.respawnPos.transform.position;
-        }
-    }
 
     //randomly change the movement speed of each NPC with random timing
     IEnumerator RandomMoveSpeed()
