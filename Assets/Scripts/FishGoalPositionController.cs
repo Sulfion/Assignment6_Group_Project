@@ -6,7 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FishGoalPositionController : MonoBehaviour
 {
-    private FlockManager flockManager;
+    public FlockManager flockManager;
+    public GameObject thisGameObject;
 
     GameObject[] goalLocationsOne;
     GameObject[] goalLocationsTwo;
@@ -14,14 +15,15 @@ public class FishGoalPositionController : MonoBehaviour
     GameObject[] goalLocationsFour;
     GameObject[] goalLocationsFive;
     NavMeshAgent agent;
+
     private bool dontStop = true;
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
 
     // Start is called before the first frame update
     void Start()
-    {
-        flockManager = GetComponent<FlockManager>();
+    {       
+        flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>(); 
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
     }
@@ -42,6 +44,20 @@ public class FishGoalPositionController : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
     }
 
+    //check if at end of river
+    //if true, reset to initial values, and change position back to start of river
+    public void CheckIfAtEnd()
+    {
+        if (atEnd == true)
+        {
+            goalCompleteTracker = 0;
+            atEnd = false;
+            agent.enabled = false;
+            thisGameObject.transform.position = flockManager.respawnTransform.position;
+            agent.enabled = true;
+        }
+    }
+
     //track when fish reaches a goal by distance with variable to know which goal has been reached
     //when goal has been reached, choose a random new goal from the next arrays positions
     //destroy gameobject when final goal reached
@@ -52,8 +68,6 @@ public class FishGoalPositionController : MonoBehaviour
             case 0:
                 if (agent.remainingDistance < 1)
                 {
-                    CheckIfAtEnd();
-                    atEnd = false;
                     agent.SetDestination(goalLocationsOne[Random.Range(0, goalLocationsOne.Length)].transform.position);
                     goalCompleteTracker++;
                 }
@@ -90,26 +104,19 @@ public class FishGoalPositionController : MonoBehaviour
                 if (agent.remainingDistance < 1)
                 {
                     atEnd = true;
-                    goalCompleteTracker = 0;
+                    CheckIfAtEnd();
                 }
                 break;
         }
     }
 
-    public void CheckIfAtEnd()
-    {
-        if (atEnd == true)
-        {
-            gameObject.transform.position = flockManager.respawnPos.transform.position;
-        }
-    }
 
     //randomly change the movement speed of each NPC with random timing
     IEnumerator RandomMoveSpeed()
     {
         while (dontStop == true)
         {
-            GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 20.0f); //set a random speed for each agent
+            GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 10.0f); //set a random speed for each agent
             yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
         }
     }
