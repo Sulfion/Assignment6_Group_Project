@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.GraphicsBuffer;
 
 public class FishGoalPositionController : MonoBehaviour
@@ -118,6 +119,16 @@ public class FishGoalPositionController : MonoBehaviour
         {
             GetComponent<NavMeshAgent>().speed = Random.Range(10.0f, 10.0f); //set a random speed for each agent
             yield return new WaitForSeconds(Random.Range(8.0f, 20.0f));
+        }
+    }
+
+    //remove the fish when it's put in the box
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Box")
+        {
+            agent.enabled = false;
+            thisGameObject.gameObject.SetActive(false);
         }
     }
 }

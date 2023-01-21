@@ -11,6 +11,8 @@ TagManager:
   - GoalFive
   - Fish
   - FlockManager
+  - lb_bird
+  - Box
   layers:
   - Default
   - TransparentFX
