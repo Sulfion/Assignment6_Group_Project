@@ -20,6 +20,7 @@ public class FishGoalPositionController : MonoBehaviour
     private bool dontStop = true;
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
+    public int numCaughtFish = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +130,7 @@ public class FishGoalPositionController : MonoBehaviour
         {
             agent.enabled = false;
             thisGameObject.gameObject.SetActive(false);
+            numCaughtFish++; //track how many fish removed
         }
     }
 }
