@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FadeScreen : MonoBehaviour
 {
+    public FishGoalPositionController fishGoalPositionController;
+
     public bool fadeOnStart = true;
-    public float fadeDuration = 2;
+    public float fadeDuration = 5;
     public Color fadeColor;
     private Renderer rend;
 

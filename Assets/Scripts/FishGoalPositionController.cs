@@ -8,6 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 public class FishGoalPositionController : MonoBehaviour
 {
     public FlockManager flockManager;
+    public FadeScreen fadeScreen;
+
     public GameObject thisGameObject;
 
     GameObject[] goalLocationsOne;
@@ -20,12 +22,14 @@ public class FishGoalPositionController : MonoBehaviour
     private bool dontStop = true;
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
-    public int numCaughtFish = 0;
 
     // Start is called before the first frame update
     void Start()
-    {       
-        flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>(); 
+    {      
+        flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
+        fadeScreen = GameObject.FindWithTag("FaderScreen").GetComponent<FadeScreen>();
+
+
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
     }
@@ -33,6 +37,7 @@ public class FishGoalPositionController : MonoBehaviour
     private void Update()
     {
         SetFishNewGoal();
+        FadeScreenOnceEnoughFishCaught();
     }
 
     //initialize arrays for different stages of progression down the river
@@ -130,7 +135,15 @@ public class FishGoalPositionController : MonoBehaviour
         {
             agent.enabled = false;
             thisGameObject.gameObject.SetActive(false);
-            numCaughtFish++; //track how many fish removed
+            flockManager.numNPC--; //track how many fish removed by putting in box
+        }
+    }
+
+    public void FadeScreenOnceEnoughFishCaught()
+    {
+        if (flockManager.numNPC == 9)
+        {
+            fadeScreen.FadeOut();
         }
     }
 }
