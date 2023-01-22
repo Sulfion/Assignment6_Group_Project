@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.GraphicsBuffer;
 
@@ -22,13 +24,14 @@ public class FishGoalPositionController : MonoBehaviour
     private bool dontStop = true;
     public bool atEnd = false;
     private int goalCompleteTracker = 0;
+    public int currentLevelTracker = 0;
+    private int stopIfStatement = 0;
 
     // Start is called before the first frame update
     void Start()
-    {      
+    {
         flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
         fadeScreen = GameObject.FindWithTag("FaderScreen").GetComponent<FadeScreen>();
-
 
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
@@ -37,7 +40,7 @@ public class FishGoalPositionController : MonoBehaviour
     private void Update()
     {
         SetFishNewGoal();
-        FadeScreenOnceEnoughFishCaught();
+        CurrentLevelTracker();
     }
 
     //initialize arrays for different stages of progression down the river
@@ -139,11 +142,33 @@ public class FishGoalPositionController : MonoBehaviour
         }
     }
 
-    public void FadeScreenOnceEnoughFishCaught()
+    //method to control transition variables between levels for FadeScreen script
+    public void CurrentLevelTracker()
     {
-        if (flockManager.numNPC == 9)
+        if (flockManager.numNPC == 29 && stopIfStatement == 0)
         {
-            fadeScreen.FadeOut();
+            currentLevelTracker++;
+            stopIfStatement++;
+        }
+        if (flockManager.numNPC == 28 && stopIfStatement == 1)
+        {
+            currentLevelTracker++;
+            stopIfStatement++;
+        }
+        if (flockManager.numNPC == 27 && stopIfStatement == 2)
+        {
+            currentLevelTracker++;
+            stopIfStatement++;
+        }
+        if (flockManager.numNPC == 26 && stopIfStatement == 3)
+        {
+            currentLevelTracker++;
+            stopIfStatement++;
+        }
+        if (flockManager.numNPC == 25 && stopIfStatement == 4)
+        {
+            currentLevelTracker++;
+            stopIfStatement++;
         }
     }
 }

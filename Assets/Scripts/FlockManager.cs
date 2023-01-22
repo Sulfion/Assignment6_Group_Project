@@ -10,7 +10,7 @@ public class FlockManager : MonoBehaviour
 
     public Transform respawnTransform;
 
-    public int numNPC = 10;
+    public int numNPC = 30;
     public GameObject[] allNPC;
     public Vector3 spawnLimit = new Vector3(30, 0, 30);
 
@@ -22,19 +22,20 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnGroupAndStorePositions();
+        StartCoroutine(SpawnGroupAndStorePositions());
     }
 
     // Update is called once per frame
     void Update()
     {
-        ApplyRules();
+
     }
 
 
     //spawn specified number of NPCs and store their positions in an array.
     //Also where they spawn so they don't appear off the map
-    private void SpawnGroupAndStorePositions()
+    //coroutine used to regulate fish spawn speed
+    IEnumerator SpawnGroupAndStorePositions()
     {
         allNPC = new GameObject[numNPC];
         for (int i = 0; i < numNPC; i++)
@@ -43,49 +44,7 @@ public class FlockManager : MonoBehaviour
                                                                 Random.Range(-spawnLimit.y, spawnLimit.y),
                                                                 Random.Range(-spawnLimit.z, spawnLimit.z));
             allNPC[i] = (GameObject)Instantiate(npcPrefab, pos, Quaternion.identity);
-        }
-    }
-
-    //loop through each NPC, find it's position and figure out how much they should avoid each other
-    //check if there's other NPC's around, if there is apply this rule to calculate the center
-    //this calculation will then find the direction the NPC wants to travel in and rotate them them towards it
-    private void ApplyRules()
-    {
-        GameObject[] gos;
-        gos = allNPC;
-
-        Vector3 vcentre = Vector3.zero;
-        Vector3 vavoid = Vector3.zero;
-        float nDistance;
-        int groupSize = 0;
-
-        foreach (GameObject go in gos)
-        {
-            if (go != this.gameObject)
-            {
-                nDistance = Vector3.Distance(go.transform.position, this.transform.position);
-                if (nDistance <= neighbourDistance)
-                {
-                    vcentre += go.transform.position;
-                    groupSize++;
-
-                    if (nDistance < 1.0f)
-                    {
-                        vavoid = vavoid + (this.transform.position = go.transform.position);
-                    }
-                }
-            }
-        }
-
-        if (groupSize > 0)
-        {
-            vcentre = vcentre / groupSize;
-
-            Vector3 direction = (vcentre + vavoid) - transform.position;
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                                                      Quaternion.LookRotation(direction),
-                                                      rotationSpeed * Time.deltaTime);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 }

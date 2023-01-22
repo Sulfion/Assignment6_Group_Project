@@ -5,15 +5,21 @@ using UnityEngine;
 public class FadeScreen : MonoBehaviour
 {
     public FishGoalPositionController fishGoalPositionController;
+    public FlockManager flockManager;
 
     public bool fadeOnStart = true;
     public float fadeDuration = 5;
     public Color fadeColor;
     private Renderer rend;
 
+    public bool dontRefade = false;
+    public int yetAnotherTracker = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
+
         rend = GetComponent<Renderer>();
         if (fadeOnStart)
         {
@@ -21,9 +27,52 @@ public class FadeScreen : MonoBehaviour
         }
     }
 
-    public void Fade(float alphaIn, float alphaOut)
+    public void Update()
     {
-        StartCoroutine(FadeRoutine(alphaIn, alphaOut));
+        fishGoalPositionController = GameObject.FindWithTag("Fish").GetComponent<FishGoalPositionController>();
+
+        FadeInAndOutTwo();
+
+        Debug.Log(fishGoalPositionController.currentLevelTracker);
+        Debug.Log("Yet Another Tracker: " + yetAnotherTracker);
+    }
+
+    //use variable from fishgoalpositioncontroller to control fades based on number of fish caught
+    //this is necessary because transition does not like to work properly while being called from another script
+    //so it's variable is tracked here and sent to it instead
+    //public IEnumerator FadeInAndOut()
+    public void FadeInAndOutTwo()
+    {
+        if (fishGoalPositionController.currentLevelTracker == 1 && yetAnotherTracker == 0)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
+        if (fishGoalPositionController.currentLevelTracker == 2 && yetAnotherTracker == 1)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
+        if (fishGoalPositionController.currentLevelTracker == 3 && yetAnotherTracker == 2)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
+        if (fishGoalPositionController.currentLevelTracker == 4 && yetAnotherTracker == 3)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
+        if (fishGoalPositionController.currentLevelTracker == 5 && yetAnotherTracker == 4)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
     }
 
     public void FadeIn()
@@ -36,7 +85,12 @@ public class FadeScreen : MonoBehaviour
         Fade(0, 1);
     }
 
-    //take alpha in/out, adjust alpha transition based on fade duration time, smooths alpha from one value to another
+    public void Fade(float alphaIn, float alphaOut)
+    {
+        StartCoroutine(FadeRoutine(alphaIn, alphaOut));
+    }
+
+    //take alpha in/out, change alpha from 0-1/1-0, adjust alpha transition duration based on fade duration time, smooth alpha from one value to another
     public IEnumerator FadeRoutine(float alphaIn, float alphaOut)
     {
         float timer = 0;
@@ -45,15 +99,20 @@ public class FadeScreen : MonoBehaviour
             Color newColor = fadeColor;
             newColor.a = Mathf.Lerp(alphaIn, alphaOut, timer / fadeDuration);
 
-            rend.material.SetColor("_BaseColor", newColor);
+            rend.material.SetColor("_Color", newColor);
 
             timer += Time.deltaTime;
             yield return null;
         }
-
-        //confirm alpha out
         Color newColor2 = fadeColor;
         newColor2.a = alphaOut;
-        rend.material.SetColor("_BaseColor", newColor2);
+        rend.material.SetColor("_Color", newColor2);
+    }
+
+    public void ManualAlphaChange()
+    {
+        Color newColor3 = rend.material.color;
+        newColor3.a = 1;
+        rend.material.SetColor("_Color", newColor3);
     }
 }
