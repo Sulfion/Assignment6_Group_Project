@@ -14,6 +14,7 @@ TagManager:
   - lb_bird
   - Box
   - FaderScreen
+  - Page
   layers:
   - Default
   - TransparentFX
