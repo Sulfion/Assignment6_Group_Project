@@ -26,7 +26,7 @@ public class FlockManager : MonoBehaviour
     }
 
     //spawn specified number of NPCs and store their positions in an array.
-    //Also where they spawn so they don't appear off the map
+    //Control area they spawn so they don't appear off the map
     //coroutine used to regulate fish spawn speed
     IEnumerator SpawnGroupAndStorePositions()
     {

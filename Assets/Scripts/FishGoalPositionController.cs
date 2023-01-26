@@ -13,6 +13,9 @@ public class FishGoalPositionController : MonoBehaviour
     public FadeScreen fadeScreen;
 
     public GameObject thisGameObject;
+    private Vector3 originalScale;
+    private Vector3 flatScale;
+    private Vector3 flatScaleTwo;
 
     GameObject[] goalLocationsOne;
     GameObject[] goalLocationsTwo;
@@ -32,6 +35,10 @@ public class FishGoalPositionController : MonoBehaviour
     {
         flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
         fadeScreen = GameObject.FindWithTag("FaderScreen").GetComponent<FadeScreen>();
+        
+        originalScale = thisGameObject.transform.localScale;
+        flatScale = new Vector3 (originalScale.x * 0.80f, originalScale.y * 0.80f, originalScale.z * 0.80f); //these are used to change the scale of the fish to be smaller
+        flatScaleTwo = new Vector3(originalScale.x * 0.50f, originalScale.y * 0.50f, originalScale.z * 0.50f);
 
         SetStartGoalForAgentsAndArrays();
         StartCoroutine(RandomMoveSpeed());
@@ -152,6 +159,7 @@ public class FishGoalPositionController : MonoBehaviour
         }
         if (flockManager.numNPC == 20 && stopIfStatement == 1)
         {
+            thisGameObject.transform.localScale = flatScale; //when certain amount of fish are caught, reduce the size
             currentLevelTracker++;
             stopIfStatement++;
         }
@@ -162,6 +170,7 @@ public class FishGoalPositionController : MonoBehaviour
         }
         if (flockManager.numNPC == 10 && stopIfStatement == 3)
         {
+            thisGameObject.transform.localScale = flatScaleTwo;
             currentLevelTracker++;
             stopIfStatement++;
         }
