@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//this script manages the "!" icon using the scene control variables
 public class Information : MonoBehaviour
 {
-    public GameObject informationPanel; //just a example, we can have informationLevel1 and informationLevel2 if needed.
-    private new AudioSource audio;
+    public GameObject informationPanel; 
+
     void Start()
     {
-        //audio = GetComponent<AudioSource>(); // get the Audio source component
-
-        StartCoroutine(InformationCoroutine()); // start a time down
+        StartCoroutine(InformationCoroutine()); 
     }
 
     // Update is called once per frame

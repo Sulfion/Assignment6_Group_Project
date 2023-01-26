@@ -32,9 +32,6 @@ public class FadeScreen : MonoBehaviour
         fishGoalPositionController = GameObject.FindWithTag("Fish").GetComponent<FishGoalPositionController>();
 
         FadeInAndOutTwo();
-
-        Debug.Log(fishGoalPositionController.currentLevelTracker);
-        Debug.Log("Yet Another Tracker: " + yetAnotherTracker);
     }
 
     //use variable from fishgoalpositioncontroller to control fades based on number of fish caught
@@ -68,6 +65,12 @@ public class FadeScreen : MonoBehaviour
             yetAnotherTracker++;
         }
         if (fishGoalPositionController.currentLevelTracker == 5 && yetAnotherTracker == 4)
+        {
+            ManualAlphaChange();
+            FadeIn();
+            yetAnotherTracker++;
+        }
+        if (fishGoalPositionController.currentLevelTracker == 6 && yetAnotherTracker == 5)
         {
             ManualAlphaChange();
             FadeIn();

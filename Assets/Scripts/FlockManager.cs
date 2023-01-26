@@ -25,13 +25,6 @@ public class FlockManager : MonoBehaviour
         StartCoroutine(SpawnGroupAndStorePositions());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
     //spawn specified number of NPCs and store their positions in an array.
     //Also where they spawn so they don't appear off the map
     //coroutine used to regulate fish spawn speed

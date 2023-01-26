@@ -15,6 +15,7 @@ TagManager:
   - Box
   - FaderScreen
   - Page
+  - Bear
   layers:
   - Default
   - TransparentFX
