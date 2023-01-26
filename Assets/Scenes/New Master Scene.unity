@@ -424,7 +424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh93354
+  m_Name: pb_Mesh139532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flockManager: {fileID: 0}
+  bearModel: {fileID: 0}
   texturesOne:
   - {fileID: 2800000, guid: 55e9d60f5694e324e804c1f0aaa19f4d, type: 3}
   rendOne: {fileID: 0}
@@ -2510,10 +2511,10 @@ Transform:
   - {fileID: 247960197}
   - {fileID: 567862794}
   - {fileID: 1176786905}
-  - {fileID: 557618020}
-  - {fileID: 399383224}
   - {fileID: 817094759}
+  - {fileID: 557618020}
   - {fileID: 68766210}
+  - {fileID: 399383224}
   - {fileID: 1892344347}
   m_Father: {fileID: 0}
   m_RootOrder: 17
@@ -3886,7 +3887,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh100692
+  m_Name: pb_Mesh142532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9575,7 +9576,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh99666
+  m_Name: pb_Mesh142214
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19198,7 +19199,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95940
+  m_Name: pb_Mesh140784
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27112,7 +27113,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh99564
+  m_Name: pb_Mesh142188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -42144,6 +42145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flockManager: {fileID: 0}
+  bearModel: {fileID: 0}
   texturesOne:
   - {fileID: 2800000, guid: 5aafc2ece82d9da4aac68249cc13bc48, type: 3}
   rendOne: {fileID: 0}
@@ -42662,8 +42664,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1688304522}
+  - component: {fileID: 1688304523}
   m_Layer: 0
-  m_Name: Book
+  m_Name: Information Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42687,6 +42690,20 @@ Transform:
   m_Father: {fileID: 75259287}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1688304523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688304521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ea06c8eb64e0a4e900fa536fe41c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  informationPanel: {fileID: 1688304521}
+  flockManager: {fileID: 0}
 --- !u!1001 &1688634666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82870,7 +82887,7 @@ GameObject:
   - component: {fileID: 1932597630}
   - component: {fileID: 1932597629}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82947,8 +82964,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932597628}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 20.5, y: 47.46, z: 63.4008}
-  m_LocalScale: {x: 1.0496, y: 186.22418, z: 267.78372}
+  m_LocalPosition: {x: 25.2859, y: 47.46, z: 61.6449}
+  m_LocalScale: {x: 1.0496, y: 58.11688, z: 125.94279}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

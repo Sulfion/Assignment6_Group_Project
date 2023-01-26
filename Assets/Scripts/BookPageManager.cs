@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class BookPageManager : MonoBehaviour
 {
     public FlockManager flockManager;
-
     public GameObject bearModel;
 
     public Texture[] texturesOne;
