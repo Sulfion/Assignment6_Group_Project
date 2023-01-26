@@ -6,6 +6,7 @@ public class FadeScreen : MonoBehaviour
 {
     public FishGoalPositionController fishGoalPositionController;
     public FlockManager flockManager;
+    public GameObject fadeScreenObject;
 
     public bool fadeOnStart = true;
     public float fadeDuration = 5;
@@ -19,8 +20,10 @@ public class FadeScreen : MonoBehaviour
     void Start()
     {
         flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
+        fadeScreenObject = GameObject.FindWithTag("FaderScreen").GetComponent<GameObject>();
 
         rend = GetComponent<Renderer>();
+
         if (fadeOnStart)
         {
             FadeIn();
