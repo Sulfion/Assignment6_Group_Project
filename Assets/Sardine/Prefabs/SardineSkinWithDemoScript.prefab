@@ -1227,8 +1227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flockManager: {fileID: 0}
+  fadeScreen: {fileID: 0}
   thisGameObject: {fileID: 159700}
   atEnd: 0
+  currentLevelTracker: 0
 --- !u!195 &2646812980149733305
 NavMeshAgent:
   m_ObjectHideFlags: 0
