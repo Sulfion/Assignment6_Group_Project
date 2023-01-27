@@ -25,7 +25,7 @@ VIDEO GOES HERE
 * Baked lighting
 * Optimized for Quest 2
 * Custom scripts to control features, such as:   
-* -Fish spawn manager with quantity trackers and current scene tracker 
+- Fish spawn manager with quantity trackers and current scene tracker 
 * -Realistic fish movement created using NavMesh agents
 * -Removable fish, forcing user to depopulate the river themselves
 * -Fade in-out screen
