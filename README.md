@@ -52,7 +52,20 @@ VIDEO GOES HERE
 
 
 #### Credits:  
-* 
+
+###Unity Asset Store
+* Lowpoly Style Free Rocks and Plants
+* Low Poly Farm Pack Lite
+* Living Birds
+* Simple Water Shader URP
+* Handpainted Forest Pack v1.0
+* Wooden Crates
+* Low Poly Fence Pack
+* Free Stylized Bear - RPG Forest Animal
+* Sardine
+* 8K Skybox Pack Free
+
+
 
 
 
