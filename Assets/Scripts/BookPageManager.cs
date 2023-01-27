@@ -38,27 +38,27 @@ public class BookPageManager : MonoBehaviour
         {
             rendOne.material.mainTexture = texturesOne[0];
         }
-        if (flockManager.numNPC == 25)
+        if (flockManager.numNPC == 26)
         {
             rendOne.material.mainTexture = texturesOne[1];
         }
-        if (flockManager.numNPC == 20)
+        if (flockManager.numNPC == 21)
         {
             rendOne.material.mainTexture = texturesOne[2];
         }
-        if (flockManager.numNPC == 15)
+        if (flockManager.numNPC == 17)
         {
             rendOne.material.mainTexture = texturesOne[3];
         }
-        if (flockManager.numNPC == 10)
+        if (flockManager.numNPC == 13)
         {
             rendOne.material.mainTexture = texturesOne[4];
         }
-        if (flockManager.numNPC == 5)
+        if (flockManager.numNPC == 9)
         {
             rendOne.material.mainTexture = texturesOne[5];
         }
-        if (flockManager.numNPC == 0)
+        if (flockManager.numNPC == 5)
         {
             rendOne.material.mainTexture = texturesOne[6];
         }

@@ -152,34 +152,39 @@ public class FishGoalPositionController : MonoBehaviour
     //method to control transition variables between levels for FadeScreen script
     public void CurrentLevelTracker()
     {
-        if (flockManager.numNPC == 25 && stopIfStatement == 0)
+        if (flockManager.numNPC == 30 && stopIfStatement == 0)
         {
             currentLevelTracker++;
             stopIfStatement++;
         }
-        if (flockManager.numNPC == 20 && stopIfStatement == 1)
+        if (flockManager.numNPC == 26 && stopIfStatement == 1)
         {
             thisGameObject.transform.localScale = flatScale; //when certain amount of fish are caught, reduce the size
             currentLevelTracker++;
             stopIfStatement++;
         }
-        if (flockManager.numNPC == 15 && stopIfStatement == 2)
+        if (flockManager.numNPC == 21 && stopIfStatement == 2)
         {
             currentLevelTracker++;
             stopIfStatement++;
         }
-        if (flockManager.numNPC == 10 && stopIfStatement == 3)
+        if (flockManager.numNPC == 17 && stopIfStatement == 3)
         {
             thisGameObject.transform.localScale = flatScaleTwo;
             currentLevelTracker++;
             stopIfStatement++;
         }
-        if (flockManager.numNPC == 5 && stopIfStatement == 4)
+        if (flockManager.numNPC == 13 && stopIfStatement == 4)
         {
             currentLevelTracker++;
             stopIfStatement++;
         }
-        if (flockManager.numNPC == 0 && stopIfStatement == 5)
+        if (flockManager.numNPC == 9 && stopIfStatement == 5)
+        {
+            currentLevelTracker++;
+            stopIfStatement++;
+        }
+        if (flockManager.numNPC == 5 && stopIfStatement == 6)
         {
             currentLevelTracker++;
             stopIfStatement++;
