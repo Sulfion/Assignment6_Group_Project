@@ -53,7 +53,7 @@ VIDEO GOES HERE
 
 #### Credits:  
 
-###Unity Asset Store
+Unity Asset Store
 * Lowpoly Style Free Rocks and Plants
 * Low Poly Farm Pack Lite
 * Living Birds
