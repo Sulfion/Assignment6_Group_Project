@@ -17,7 +17,6 @@ public class BookPageManager : MonoBehaviour
     void Start()
     {
         flockManager = GameObject.FindWithTag("FlockManager").GetComponent<FlockManager>();
-        bearModel = GameObject.FindWithTag("Bear").GetComponent<GameObject>();
         rendOne = GetComponent<Renderer>();
     }
 
@@ -25,6 +24,11 @@ public class BookPageManager : MonoBehaviour
     void Update()
     {
         TurnThePage();
+
+        if (flockManager.numNPC == 10)
+        {
+            bearModel.SetActive(false);
+        }
     }
 
     //manage the book pages, when enough fish are caught update the text and picture
@@ -53,7 +57,6 @@ public class BookPageManager : MonoBehaviour
         if (flockManager.numNPC == 5)
         {
             rendOne.material.mainTexture = texturesOne[5];
-            bearModel.SetActive(false);
         }
         if (flockManager.numNPC == 0)
         {
