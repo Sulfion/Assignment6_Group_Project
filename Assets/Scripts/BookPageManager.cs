@@ -9,6 +9,9 @@ public class BookPageManager : MonoBehaviour
 {
     public FlockManager flockManager;
     public GameObject bearModel;
+    public GameObject birdModel1;
+    public GameObject birdModel2;
+    public GameObject birdModel3;
 
     public Texture[] texturesOne;
     public Renderer rendOne;
@@ -25,9 +28,21 @@ public class BookPageManager : MonoBehaviour
     {
         TurnThePage();
 
-        if (flockManager.numNPC == 10)
+        if (flockManager.numNPC == 21)
+        {
+            birdModel1.SetActive(false);
+        }
+        if (flockManager.numNPC == 17)
+        {
+            birdModel2.SetActive(false);
+        }
+        if (flockManager.numNPC == 13)
         {
             bearModel.SetActive(false);
+        }
+        if (flockManager.numNPC == 5)
+        {
+            birdModel3.SetActive(false);
         }
     }
 
