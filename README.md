@@ -11,9 +11,10 @@ Learn about the impact climate change and overfishing has had on salmon populati
 
 
 
+#### Video:
 
+https://user-images.githubusercontent.com/115562974/215169698-36487ee1-429b-4293-9924-99f2640b9304.mp4
 
-VIDEO GOES HERE
 
 
 #### Features:
@@ -52,9 +53,24 @@ VIDEO GOES HERE
 
 
 #### Credits:  
-* 
 
+Unity Asset Store
+* Lowpoly Style Free Rocks and Plants
+* Low Poly Farm Pack Lite
+* Living Birds
+* Simple Water Shader URP
+* Handpainted Forest Pack v1.0
+* Wooden Crates
+* Low Poly Fence Pack
+* Free Stylized Bear - RPG Forest Animal
+* Sardine
+* 8K Skybox Pack Free
 
-
-
+#### Sources:
+https://www.sciencedaily.com/releases/2008/10/081028074430.htm  
+https://www.thecanadianencyclopedia.ca/en/article/history-of-commercial-fisheries  
+https://canadiangeographic.ca/articles/insurmountable-the-battle-to-bring-a-salmon-run-home/  
+https://canadiangeographic.ca/articles/salmon-in-the-city/  
+https://canadiangeographic.ca/articles/insurmountable-the-battle-to-bring-a-salmon-run-home/  
+https://www.theguardian.com/environment/2022/oct/05/canada-dead-salmon-drought-british-columbia  
 
