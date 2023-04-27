@@ -16,6 +16,7 @@ TagManager:
   - FaderScreen
   - Page
   - Bear
+  - ParticleHolder
   layers:
   - Default
   - TransparentFX

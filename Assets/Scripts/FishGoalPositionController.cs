@@ -146,6 +146,7 @@ public class FishGoalPositionController : MonoBehaviour
             agent.enabled = false;
             thisGameObject.gameObject.SetActive(false);
             flockManager.numNPC--; //track how many fish removed by putting in box
+
         }
     }
 
